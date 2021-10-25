@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://gitlab.com/KageKirin/metagen-js/issues"
   },
-  "homepage": "https://gitlab.com/KageKirin/metagen-js#readme"
+  "homepage": "https://gitlab.com/KageKirin/metagen-js#readme",
+  "dependencies": {
+    "xxhash-addon": "^1.4.0"
+  }
 }
