@@ -21,6 +21,7 @@
   },
   "homepage": "https://gitlab.com/KageKirin/metagen-js#readme",
   "dependencies": {
+    "argparse": "^2.0.1",
     "xxhash-addon": "^1.4.0"
   }
 }
