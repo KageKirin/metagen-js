@@ -2,7 +2,8 @@
 
 'use strict';
 
-const fs = require('fs')
+const fs = require('fs');
+const glob = require("glob");
 const { ArgumentParser } = require('argparse');
 const { XXHash64, XXHash128 } = require('xxhash-addon');
 const { version } = require('./package.json');
@@ -29,15 +30,19 @@ function main()
 
     let xxh128 = new XXHash128(seed);
 
-    args.files.forEach(file => {
-        if (fs.existsSync(file) && !file.endsWith(".meta"))
-        {
-            xxh128.update(Buffer.from(file));
-            let guid = xxh128.digest();
-            xxh128.reset();
+    args.files.forEach(_file => {
+        glob(_file, (er, files) => {
+            files.forEach(file => {
+                if (fs.existsSync(file) && !file.endsWith(".meta"))
+                {
+                    xxh128.update(Buffer.from(file));
+                    let guid = xxh128.digest();
+                    xxh128.reset();
 
-            generateMetaFile(file, guid);
-        }
+                    generateMetaFile(file, guid);
+                }
+            })
+        })
     });
 }
 
