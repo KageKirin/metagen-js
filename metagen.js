@@ -15,6 +15,7 @@ const parser = new ArgumentParser({
 
 parser.add_argument('-v', '--version', { action: 'version', version });
 parser.add_argument('-s', '--seed', { help: 'seed string, e.g. package name', type: String, default: process.cwd() })
+parser.add_argument('-o', '--overwrite', { help: 'overwrite existing .meta files', action: 'store_true' })
 parser.add_argument('files', { help: 'files to generate .meta files for', nargs: '+'})
 
 const args = parser.parse_args();
@@ -39,14 +40,14 @@ function main()
                     let guid = xxh128.digest();
                     xxh128.reset();
 
-                    generateMetaFile(file, guid);
+                    generateMetaFile(file, guid, args.overwrite);
                 }
             })
         })
     });
 }
 
-function generateMetaFile(file, guid)
+function generateMetaFile(file, guid, overwrite)
 {
     let metatemplate = `fileFormatVersion: 2
 guid: ${guid.toString('hex')}
@@ -63,8 +64,13 @@ MonoImporter:
 
     console.dir({file, guid: guid.toString('hex') });
     let metafile = file + ".meta";
-    console.log(metafile);
 
+    if (fs.existsSync(metafile) && !overwrite) {
+      console.log(`skipping ${metafile}`);
+      return;
+    }
+
+    console.log(`writing ${metafile}`);
     console.log(metatemplate);
     fs.writeFile(metafile, metatemplate, err => {
         if (err) {
