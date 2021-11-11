@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A Unity .meta file generation tool in JS",
   "main": "metagen.js",
+  "bin": {
+    "metagen": "metagen.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
