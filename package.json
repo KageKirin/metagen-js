@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/KageKirin/metagen-js.git"
+    "url": "git+ssh://git@github.com/KageKirin/metagen-js.git"
   },
   "keywords": [
     "unity",
@@ -17,9 +17,9 @@
   "author": "Chris Helmich",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/KageKirin/metagen-js/issues"
+    "url": "https://github.com/KageKirin/metagen-js/issues"
   },
-  "homepage": "https://gitlab.com/KageKirin/metagen-js#readme",
+  "homepage": "https://github.com/KageKirin/metagen-js#readme",
   "dependencies": {
     "argparse": "^2.0.1",
     "glob": "^7.2.0",
