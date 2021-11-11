@@ -15,7 +15,7 @@
     "meta"
   ],
   "author": "Chris Helmich",
-  "license": "MPL-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/KageKirin/metagen-js/issues"
   },
