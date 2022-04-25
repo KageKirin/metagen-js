@@ -51,7 +51,12 @@ function generateMetaFile(file, guid, overwrite)
 {
     let metatemplate = `fileFormatVersion: 2
 guid: ${guid.toString('hex')}
-MonoImporter:
+`;
+
+    if (fs.lstatSync(file).isFile())
+    {
+      metatemplate +=
+`MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
@@ -61,6 +66,19 @@ MonoImporter:
   assetBundleName: 
   assetBundleVariant:
 `;
+    }
+    else if (fs.lstatSync(file).isDirectory())
+    {
+      metatemplate +=
+`folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+`;
+    }
+
 
     console.dir({file, guid: guid.toString('hex') });
     let metafile = file + ".meta";
